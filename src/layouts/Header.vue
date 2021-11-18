@@ -11,7 +11,7 @@
             <v-list-item-icon>
               <v-icon>mdi-audio-input-xlr</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>{{ $t('menuList.home') }}</v-list-item-title>
           </v-list-item>
           <v-list-item to="about">
             <v-list-item-icon>
