@@ -120,12 +120,12 @@
 // import { save } from "../../services/document";
 import { getAutoCompleteDocumentCategory } from "../../services/documentCategory";
 import { getAutoCompleteSatker } from "../../services/satker";
-
+import { VueOfflineMixin } from "vue-offline";
 import { validationMixin } from "vuelidate";
 import { required, maxLength } from "vuelidate/lib/validators";
 
 export default {
-  mixins: [validationMixin],
+  mixins: [validationMixin,VueOfflineMixin],
   validations: {
     document_id: { required },
     no_surat: { required, maxLength: maxLength(10) },
@@ -210,8 +210,11 @@ export default {
   },
   methods: {
     submit() {
-      console.log(this.$v);
-      this.$v.$touch();
+      if(this.isOnline){
+        this.$v.$touch();
+      }else{
+        alert("You are offline");
+      }
     },
     clear() {
       this.$v.$reset();

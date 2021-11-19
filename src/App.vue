@@ -1,5 +1,12 @@
 <template>
-  <v-app>
+  <v-app v-if="isLogin">
+    <v-main>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+  </v-app>
+  <v-app v-else>
     <Header />
     <v-main>
       <v-container fluid>
@@ -18,6 +25,11 @@ export default {
   components: {
     Header,
     Footer
-  }  
+  },
+  computed : {
+    isLogin(){
+      return this.$route.name === "Login"
+    }
+  }
 }
 </script>
